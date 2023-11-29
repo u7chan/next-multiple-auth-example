@@ -7,6 +7,16 @@ const authOptions: AuthOptions = {
     verifyRequest: '/',
     newUser: '/',
   },
+  callbacks: {
+    jwt({ token }) {
+      console.log('#callbacks - jwt', { token })
+      return token
+    },
+    session({ session, token }) {
+      console.log('#callbacks - session', { session, token })
+      return session
+    },
+  },
   providers: [
     CredentialsProvider({
       name: 'email-password-01',
@@ -17,7 +27,7 @@ const authOptions: AuthOptions = {
       authorize() {
         console.log('#authorize-01')
         return {
-          id: '1',
+          id: '#id_1',
           name: 'dummy-01',
           email: 'dummy@dummy',
         }
@@ -32,7 +42,7 @@ const authOptions: AuthOptions = {
       authorize() {
         console.log('#authorize-02')
         return {
-          id: '2',
+          id: '#id_2',
           name: 'dummy-02',
           email: 'dummy@dummy',
         }
