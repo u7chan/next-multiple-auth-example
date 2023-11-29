@@ -11,7 +11,9 @@ const authOptions: AuthOptions = {
       },
       authorize() {
         return {
-          id: 'dummy-01',
+          id: '1',
+          name: 'dummy-01',
+          email: 'dummy@dummy',
         }
       },
     }),
