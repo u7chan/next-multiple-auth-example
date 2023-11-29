@@ -47,12 +47,13 @@ export const authOptions: AuthOptions = {
       },
       authorize(credentials) {
         console.log('#authorize-A')
-        return {
+        const user: UserSession = {
           id: '#id_1',
           name: `dummy-A-${Date.now()}`,
           email: 'a@dummy',
           role: credentials?.email === 'admin' ? 'admin' : 'user',
         }
+        return user
       },
     }),
     // https://stackoverflow.com/questions/76233453/how-to-add-multiple-login-page-with-nextauth-and-calling-specific-api-routes
@@ -64,12 +65,13 @@ export const authOptions: AuthOptions = {
       },
       authorize() {
         console.log('#authorize-B')
-        return {
+        const user: UserSession = {
           id: '#id_2',
           name: `dummy-B-${Date.now()}`,
           email: 'b@dummy',
           role: 'reporter',
         }
+        return user
       },
     }),
   ],
