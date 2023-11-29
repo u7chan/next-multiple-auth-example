@@ -1,19 +1,40 @@
 import NextAuth, { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-const authOptions: AuthOptions = {
+type UserSession = {
+  id: string
+  name: string
+  email: string
+  role: 'admin' | 'user' | 'reporter'
+}
+
+export const authOptions: AuthOptions = {
   pages: {
     error: '/',
     verifyRequest: '/',
     newUser: '/',
   },
   callbacks: {
-    jwt({ token }) {
-      console.log('#callbacks - jwt', { token })
+    jwt({ token, user }) {
+      console.log('#callbacks - jwt', { token, user })
+      if (user) {
+        const userSession = user as UserSession
+        token.id = userSession.id
+        token.role = userSession.role
+      }
       return token
     },
+    // await getServerSession() の引数、 authOption 未指定でセッションを取得すると下記は呼ばれない
     session({ session, token }) {
       console.log('#callbacks - session', { session, token })
+      if (session.user) {
+        session.user = {
+          id: token.id,
+          name: token.name,
+          email: token.email,
+          role: token.role,
+        } as UserSession
+      }
       return session
     },
   },
@@ -24,12 +45,13 @@ const authOptions: AuthOptions = {
         email: { type: 'text' },
         password: { type: 'password' },
       },
-      authorize() {
+      authorize(credentials) {
         console.log('#authorize-A')
         return {
           id: '#id_1',
           name: `dummy-A-${Date.now()}`,
           email: 'a@dummy',
+          role: credentials?.email === 'admin' ? 'admin' : 'user',
         }
       },
     }),
@@ -46,6 +68,7 @@ const authOptions: AuthOptions = {
           id: '#id_2',
           name: `dummy-B-${Date.now()}`,
           email: 'b@dummy',
+          role: 'reporter',
         }
       },
     }),
