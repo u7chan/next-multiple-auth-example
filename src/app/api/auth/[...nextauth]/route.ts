@@ -56,6 +56,7 @@ export const authOptions: AuthOptions = {
         return user
       },
     }),
+    // ↓ CredentialsProvider の2つ目を定義しても、2つ目の authorize() は呼ばれない
     // https://stackoverflow.com/questions/76233453/how-to-add-multiple-login-page-with-nextauth-and-calling-specific-api-routes
     CredentialsProvider({
       name: 'email-password-B',
