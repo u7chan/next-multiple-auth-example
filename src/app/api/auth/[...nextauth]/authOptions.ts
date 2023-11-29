@@ -15,9 +15,25 @@ const authOptions: AuthOptions = {
         password: { type: 'password' },
       },
       authorize() {
+        console.log('#authorize-01')
         return {
           id: '1',
           name: 'dummy-01',
+          email: 'dummy@dummy',
+        }
+      },
+    }),
+    CredentialsProvider({
+      name: 'email-password-02',
+      credentials: {
+        id: { type: 'text' },
+        password: { type: 'password' },
+      },
+      authorize() {
+        console.log('#authorize-02')
+        return {
+          id: '2',
+          name: 'dummy-02',
           email: 'dummy@dummy',
         }
       },
