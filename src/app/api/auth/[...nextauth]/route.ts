@@ -18,6 +18,16 @@ export const authOptions: AuthOptions = {
     jwt({ token, user }) {
       console.log('#callbacks - jwt', { token, user })
       if (user) {
+        /*
+          NextAuthで用意されている標準のユーザー型は以下となる
+          export interface DefaultUser {
+            id: string
+            name?: string | null
+            email?: string | null
+            image?: string | null
+          }
+          拡張する場合は、token に直接をフィールドを追加することで、session コールバック引数の token から受け取れる
+        */
         const userSession = user as UserSession
         token.id = userSession.id
         token.role = userSession.role

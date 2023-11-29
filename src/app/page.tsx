@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/route'
 
 export default async function Page() {
-  // authOptions を設定すると AuthOptions::callbacks の session メソッドが呼ばれるようになる
+  // getServerSession の authOptions を設定すると、authOptions 内の session コールバックが呼ばれるようになる
   const session = await getServerSession(authOptions)
   return (
     <main>
