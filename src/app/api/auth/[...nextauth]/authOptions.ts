@@ -2,6 +2,11 @@ import { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 const authOptions: AuthOptions = {
+  pages: {
+    error: '/',
+    verifyRequest: '/',
+    newUser: '/',
+  },
   providers: [
     CredentialsProvider({
       name: 'email-password-01',
