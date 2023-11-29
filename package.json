@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "modern-css-reset": "^1.4.0",
     "next": "14.0.3",
     "next-auth": "^4.24.5",
     "react": "^18",
