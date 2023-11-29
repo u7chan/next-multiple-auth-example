@@ -19,32 +19,33 @@ const authOptions: AuthOptions = {
   },
   providers: [
     CredentialsProvider({
-      name: 'email-password-01',
+      name: 'email-password-A',
       credentials: {
         email: { type: 'text' },
         password: { type: 'password' },
       },
       authorize() {
-        console.log('#authorize-01')
+        console.log('#authorize-A')
         return {
           id: '#id_1',
-          name: 'dummy-01',
-          email: 'dummy@dummy',
+          name: `dummy-A-${Date.now()}`,
+          email: 'a@dummy',
         }
       },
     }),
+    // https://stackoverflow.com/questions/76233453/how-to-add-multiple-login-page-with-nextauth-and-calling-specific-api-routes
     CredentialsProvider({
-      name: 'email-password-02',
+      name: 'email-password-B',
       credentials: {
         id: { type: 'text' },
         password: { type: 'password' },
       },
       authorize() {
-        console.log('#authorize-02')
+        console.log('#authorize-B')
         return {
           id: '#id_2',
-          name: 'dummy-02',
-          email: 'dummy@dummy',
+          name: `dummy-B-${Date.now()}`,
+          email: 'b@dummy',
         }
       },
     }),

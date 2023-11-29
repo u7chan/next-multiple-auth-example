@@ -1,13 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
-import authOptions from './api/auth/[...nextauth]/authOptions'
 
 export default async function Page() {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession()
   return (
     <main>
-      <h1>Root</h1>
       <div>
         <Image src='/next.svg' alt='Next.js Logo' width={180} height={37} />
         <pre>
