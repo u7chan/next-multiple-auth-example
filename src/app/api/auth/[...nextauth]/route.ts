@@ -51,13 +51,12 @@ export const authOptions: AuthOptions = {
   },
   providers: [
     CredentialsProvider({
-      name: 'email-password-A',
+      name: 'email and password',
       credentials: {
         email: { type: 'text' },
         password: { type: 'password' },
       },
       authorize(credentials) {
-        console.log('#authorize-A')
         const user: UserSession = {
           id: '#id_1',
           name: `dummy-A-${Date.now()}`,
