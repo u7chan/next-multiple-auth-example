@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "pnpm dlx @biomejs/biome check src"
+    "lint": "pnpm dlx @biomejs/biome check --write src"
   },
   "dependencies": {
     "modern-css-reset": "^1.4.0",

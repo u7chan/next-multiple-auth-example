@@ -6,6 +6,13 @@
   "postCreateCommand": "pnpm i",
   "customizations": {
     "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "[typescript]": {
+            "editor.defaultFormatter": "biomejs.biome"
+        },
+        "biome.lspBin": "/workspaces/next-multiple-auth-example/node_modules/.bin/biome"
+      },
       "extensions": [
         "biomejs.biome",
         "davidanson.vscode-markdownlint",

@@ -1,6 +1,6 @@
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/route'
 
 export default async function Page() {
