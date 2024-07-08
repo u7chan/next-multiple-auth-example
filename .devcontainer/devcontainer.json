@@ -1,17 +1,17 @@
 {
-    "name": "dev",
-    "build": {
-        "dockerfile": "./Dockerfile"
-    },
-    "postCreateCommand": "pnpm i",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "biomejs.biome",
-                "davidanson.vscode-markdownlint",
-                "eamodio.gitlens",
-                "humao.rest-client"
-            ]
-        }
+  "name": "dev",
+  "build": {
+    "dockerfile": "./Dockerfile"
+  },
+  "postCreateCommand": "pnpm i",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "biomejs.biome",
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "humao.rest-client"
+      ]
     }
+  }
 }
