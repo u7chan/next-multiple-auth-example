@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
-import { authOptions } from './api/auth/[...nextauth]/route'
+import { authOptions } from '../api/auth/[...nextauth]/route'
 
 export default async function Page() {
   // getServerSession の authOptions を設定すると、authOptions 内の session コールバックが呼ばれるようになる
@@ -15,11 +15,16 @@ export default async function Page() {
           <code>{JSON.stringify(session, null, 2)}</code>
         </pre>
       </div>
+      <hr />
       <div>
-        <Link href='/api/auth/signin'>sign-in</Link>
+        <Link href='/api/auth/signin'>sign-in (NextAuth)</Link>
       </div>
       <div>
-        <Link href='/api/auth/signout'>sign-out</Link>
+        <Link href='/api/auth/signout'>sign-out (NextAuth)</Link>
+      </div>
+      <hr />
+      <div>
+        <Link href='/api/signout'>sign-out (API Routes)</Link>
       </div>
     </main>
   )
