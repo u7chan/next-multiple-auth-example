@@ -1,5 +1,6 @@
 import NextAuth, { type AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import LineProvider from 'next-auth/providers/line'
 
 type UserSession = {
   id: string
@@ -66,23 +67,11 @@ export const authOptions: AuthOptions = {
         return user
       },
     }),
-    // ↓ CredentialsProvider の2つ目を定義しても、2つ目の authorize() は呼ばれない
-    // https://stackoverflow.com/questions/76233453/how-to-add-multiple-login-page-with-nextauth-and-calling-specific-api-routes
-    CredentialsProvider({
-      name: 'email-password-B',
-      credentials: {
-        id: { type: 'text' },
-        password: { type: 'password' },
-      },
-      authorize() {
-        console.log('#authorize-B')
-        const user: UserSession = {
-          id: '#id_2',
-          name: `dummy-B-${Date.now()}`,
-          email: 'b@dummy',
-          role: 'reporter',
-        }
-        return user
+    LineProvider({
+      clientId: process.env.LINE_CLIENT_ID || '',
+      clientSecret: process.env.LINE_CLIENT_SECRET || '',
+      authorization: {
+        params: { scope: 'openid profile email' },
       },
     }),
   ],
